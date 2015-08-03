@@ -3,6 +3,23 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+void forkChildren (int nChildren) {
+    int i;
+    pid_t pid;
+    for (i = 1; i <= nChildren; i++) {
+        pid = fork();
+        if (pid == -1) {
+            /* error handling here, if needed */
+            return;
+        }
+        if (pid == 0) {
+            printf("I am a child: %d PID: %d\n",i, getpid());
+            sleep (5);
+            return;
+        }
+    }
+}
+
 int main()
 {
         pid_t pid;
@@ -10,6 +27,9 @@ int main()
         int ret;
         char buf[20];
 
+	forkChildren(5);
+
+/*
         ret = pipe(myPipeFd);
 
         if(ret == -1){
@@ -30,6 +50,7 @@ int main()
                 printf("[CHILD PROCESS]\n\n");
                 write(myPipeFd[1], "Heyy there", 12);//first integer in the array is set up and opened for reading, while the second integer for writing.
         }
+*/
         return 0;
 }
 
