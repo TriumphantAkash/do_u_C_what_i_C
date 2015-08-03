@@ -1,4 +1,4 @@
-//this program shows implementation of one way IPC between n processes
+//this program shows implementation of one way IPC between 5 processes
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
